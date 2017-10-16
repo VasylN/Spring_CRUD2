@@ -21,7 +21,7 @@ import java.util.List;
 
     @Override
     public void addUser(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.save(user);
     }
 
@@ -53,7 +53,7 @@ import java.util.List;
         User existingUser = session.get(User.class, user.getId());
         existingUser.setName(user.getName());
         existingUser.setAge(user.getAge());
-        //existingUser.setAdmin(user.isAdmin());
+        existingUser.setAdmin(user.isAdmin());
         session.save(existingUser);
     }
 }
